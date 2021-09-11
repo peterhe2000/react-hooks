@@ -23,7 +23,7 @@ function PokemonInfo({pokemonName}) {
       return
     }
     setState({status: 'pending'})
-    fetchPokemon(pokemonName)(
+    fetchPokemon(pokemonName).then(
       pokemonData => {
         setState({status: 'resolved', pokemon: pokemonData})
       },
@@ -73,7 +73,7 @@ function App() {
       <PokemonForm pokemonName={pokemonName} onSubmit={handleSubmit} />
       <hr />
       <div className="pokemon-info">
-        <ErrorBoundary      
+        <ErrorBoundary
           FallbackComponent={ErrorFallback}
           onReset={handleReset}
           resetKeys={[pokemonName]}
